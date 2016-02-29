@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html><body>
+<h1>WeMos-D1 Web Server</h1>
+<p>GPIOx/D5 <a href="gpio.lc?p=5&s=1"><button>ON</button></a>
+<a href="gpio.lc?p=5&s=0"><button>OFF</button></a></p>
+<p>GPIO2/D4 <a href="gpio.lc?p=4&s=1"><button>ON</button></a>
+<a href="gpio.lc?p=4&s=0"><button>OFF</button></a></p>
+<form method=POST action="gpio.lc">
+<select name=p>
+<option value=0>D0</option>
+<option value=1>D1</option>
+<option value=2>D2</option>
+<option value=3>D3</option>
+<option value=4>D4</option>
+<option value=5>D5</option>
+<option value=6>D6</option>
+<option value=7>D7</option>
+<option value=8>D8</option>
+</select><select name=s>
+<option value=0>Off</option><option value=1>On</option>
+</select><input type=submit />
+</form>
+</body></html>
