@@ -22,6 +22,5 @@ WiFi.lua - does not yet exist. Will be a "port" of WiFiInfo, but currently just 
 
 There are a few little utility programs that I've not been
 able to find anywhere else - maybe I've reinvented the wheel.
-
 printfile.lua - parameter is the filename (duh)
 WiFiInfo.lua - prints all current wifi status it can find.
