@@ -15,7 +15,12 @@ print("form:",formvars.p, formvars.s)
     gpio.mode(formvars.p, gpio.OUTPUT)
     gpio.write(formvars.p, formvars.s)
 end
+
 -- Build messages and statuses into buf
+buf = buf.."<h3>Pin Status</h3>"
+for p = 0,12 do
+    buf = buf.."Pin "..p.."="..gpio.read(p).."<br/>"
+end
 
 local fname = "gpio.htm"
 local clen = filesize(fname) + #buf
