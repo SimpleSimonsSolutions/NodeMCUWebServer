@@ -1,11 +1,17 @@
 # NodeMCUWebServer
-NodeMCU WeMos-D1R2 / ESP8266 WebServer
+NodeMCU / ESP8266 WebServer
+Alpha release 0.5.0
 
 This WebServer may run on NodeMCU builds other than WeMos-D1R2 / ESP8266.  
-I would be very interested in finding out.
+I am interested in finding out, and have ordered a couple of other boards.
 
 It should support serving up basic non-HTML such as jpg, wav, etc. But it's not tested.  
-(look in WebServer.lua for allowable types)
+(look in WebServer.lua for allowable types).
+
+Dynamic content is supported via pre- and post- file include variables.
+Said content is limited by heap space to maybe 10K or so.
+Dive into gpio.lua for how to do it - there's subtleties to consider!
+A usage document is just dying to be written. ;) 
 
 I use Esplorer as my IDE. Boot ID:  
 	NodeMCU 0.9.6 build 20150704  powered by Lua 5.1.4  
