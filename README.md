@@ -19,7 +19,7 @@ I use Esplorer as my IDE. Boot ID:
 
 WebServer.lua -- Main module. Needs to be run as a compiled (lc) file for memory reasons.  
 	fileutils.lua -- "require"d module - compile it  
-	urlutils.lua -- "required"d module - compile it
+	urlutils.lua -- "require"d module - compile it
 
 Some basic webcontent:  
 	favicon.ico - My logo. Initially used for basic testing, but now my "brand". :)  
