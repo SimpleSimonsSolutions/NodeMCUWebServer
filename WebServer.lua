@@ -47,25 +47,27 @@ srv:listen(80, function(conn)
     conn:on("receive", function (client, request)
 
         local function sendtext (client) -- only useful for SMALL send queues due to heap
-        -- typical case is a client:send of the headers triggers us
+        -- typical case: client:send of the headers & buf triggers us
+
             if #scontent > 0 then
                 client:send(table.remove(scontent,1))
             else
                 client:close()
-                collectgarbage();
+                collectgarbage()
             end
         end
         -- client:on("sent", sendtext)
 
         local function sendfile (client) -- file must already be open
         -- typical case is a client:send of the headers triggers us
+
             fbuf = file.read()
             if fbuf ~= nil then
                 client:send(fbuf)
-            else
+            else  -- End Of File
                 file.close();
-                client:close()
-                collectgarbage();
+                client:on("sent", sendtext)
+                sendtext(client) -- output scontent after the file
             end
         end
 
@@ -159,7 +161,6 @@ srv:listen(80, function(conn)
                 hdr = "HTTP/1.1 500 Internal Server Error\n"
                 buf = "<h1>500 Oops - sorry!<h1>"
             end
-            hdr = hdr..ServerID
          --   print(hdr)
         else -- no idea what method it is
             hdr = "HTTP/1.1 400 Bad Request\n"
@@ -167,12 +168,11 @@ srv:listen(80, function(conn)
         end
 
         if (OnSent == "sendfile") then
-            client:on("sent", sendfile)
+            client:on("sent", sendfile)  -- file must already be open
         else
             client:on("sent", sendtext)
         end
-        client:send(hdr..buf) -- This will also trigger the sent event
-        collectgarbage()
+        client:send(hdr..ServerID..buf) -- This will also trigger the "sent" event
     end)
 end)
 
